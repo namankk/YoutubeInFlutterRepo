@@ -27,14 +27,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        //Find flutter view
         flutterView = findViewById(R.id.flutter_view_main);
         setSupportActionBar(toolbar);
+        //Create flutter engine
         FlutterEngine flutterEngine = new FlutterEngine(getApplicationContext());
         flutterEngine.getNavigationChannel().setInitialRoute("/");
         flutterEngine.getDartExecutor().executeDartEntrypoint(
                 DartExecutor.DartEntrypoint.createDefault()
         );
+        //Register plugin
         GeneratedPluginRegistrant.registerWith(flutterEngine);
+        //Attch flutter view with flutter engine
         flutterView.attachToFlutterEngine(flutterEngine);
     }
 
